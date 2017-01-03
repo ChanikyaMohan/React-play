@@ -29,6 +29,7 @@ class TodoStore extends EventEmitter {
         this.emit("change");
     }
 
+
     getAll(){
         return this.todos;
     }

@@ -2,7 +2,7 @@ import React from "react";
 
 import Todo from "../components/Todo";
 import TodoStore from "../stores/TodoStore";
-
+import * as TodoAction from "../actions/Todoactions";
 
 
 export default class Todos extends React.Component {
@@ -20,6 +20,9 @@ export default class Todos extends React.Component {
       });
     });
   }
+    createTodo(){
+        TodoAction.createTodo(Date.now());
+    }
 
 
   render() {
@@ -31,6 +34,8 @@ export default class Todos extends React.Component {
 
     return (
       <div>
+        <button onClick={this.createTodo.bind(this)} class="btn btn-info"> Create!</button>
+          <button  class="btn btn-danger"> Delete!</button>
         <h1>Todos</h1>
         <ul>{TodoComponents}</ul>
       </div>
