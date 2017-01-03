@@ -9,7 +9,8 @@ export default class Todos extends React.Component {
   constructor() {
     super();
     this.state = {
-      todos : TodoStore.getAll()
+      todos : TodoStore.getAll(),
+      text : ""
     };
   }
 
@@ -21,9 +22,12 @@ export default class Todos extends React.Component {
     });
   }
     createTodo(){
-        TodoAction.createTodo(Date.now());
+        TodoAction.createTodo(this.state.text);
     }
 
+    getText(e){
+        this.setState({ text: e.target.value });
+    }
 
   render() {
     const { todos } = this.state;
@@ -35,6 +39,7 @@ export default class Todos extends React.Component {
     return (
       <div>
         <button onClick={this.createTodo.bind(this)} class="btn btn-info"> Create!</button>
+          <input type="text" onChange={ this.getText.bind(this) } /><br />
           <button  class="btn btn-danger"> Delete!</button>
         <h1>Todos</h1>
         <ul>{TodoComponents}</ul>
